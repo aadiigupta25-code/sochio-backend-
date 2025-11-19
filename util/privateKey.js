@@ -4,6 +4,15 @@ const initializeSettings = require("../index");
 const initFirebase = async () => {
   try {
     await initializeSettings;
+    
+    // Check if valid Firebase credentials exist
+    if (!global.settingJSON.privateKey || 
+        !global.settingJSON.privateKey.private_key || 
+        global.settingJSON.privateKey.private_key === "your_private_key") {
+      console.log("Firebase credentials not configured, skipping initialization");
+      return null;
+    }
+    
     admin.initializeApp({
       credential: admin.credential.cert(global.settingJSON.privateKey),
     });
@@ -11,7 +20,7 @@ const initFirebase = async () => {
     return admin;
   } catch (error) {
     console.error("Failed to initialize Firebase Admin SDK:", error);
-    throw error;
+    return null;
   }
 };
 
