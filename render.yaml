@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: sochio-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        value: mongodb+srv://aadiigupta25_db_user:DUyFwkjQjQuyLYrU@sochio-cluster.zmj42of.mongodb.net/sochio_db?retryWrites=true&w=majority
+      - key: JWT_SECRET
+        value: sochio-jwt-secret-2024
+      - key: API_SECRET_KEY
+        value: sochio-api-secret-2024
+      - key: PROJECT_NAME
+        value: Sochio
+      - key: BASE_URL
+        value: https://sochio-backend.onrender.com/
+      - key: EMAIL
+        value: your-email@gmail.com
+      - key: EMAIL_PASSWORD
+        value: your-app-password
